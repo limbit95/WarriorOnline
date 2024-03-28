@@ -1,8 +1,11 @@
 package edu.kh.warrioronline.main.model.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.kh.warrioronline.member.model.dto.Member;
+import edu.kh.warrioronline.member.model.service.MemberService;
 import edu.kh.warrioronline.warrior.model.dto.Warrior;
 import edu.kh.warrioronline.warrior.model.service.WarriorService;
 import jakarta.servlet.ServletException;
@@ -12,8 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/gamestart")
-public class GameStartController extends HttpServlet{
+@WebServlet("/selectpage")
+public class SelectPageController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,22 +25,22 @@ public class GameStartController extends HttpServlet{
 			HttpSession session = req.getSession();
 			
 			Member member = (Member)session.getAttribute("loginMember");
-			String warriorNo = req.getParameter("warriorNo");
 			
 			WarriorService warriorService = new WarriorService();
 			
-			Warrior warrior = warriorService.selectOne(warriorNo, member.getMemberNo());
+			List<Warrior> warriorList = warriorService.selectAll(member.getMemberNo());
 			
-			session.setAttribute("selectwarrior", warrior);
+			if(!warriorList.isEmpty()) {
+				session.setAttribute("warriorList", warriorList);
+			}
 		} catch (Exception e) {
-			System.out.println("[캐릭터 접속 중 예외발생]");
+			System.out.println("[회원 번호 조회 중 예외발생");
 			e.printStackTrace();
 		}
 		
-		req.getRequestDispatcher("/WEB-INF/views/main/gamestart.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/WEB-INF/views/main/selectpage.jsp").forward(req, resp);
 	}
-	
+
 	
 	
 }

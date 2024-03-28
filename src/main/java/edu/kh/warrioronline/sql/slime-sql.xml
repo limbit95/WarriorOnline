@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key="selectAll">
+		SELECT COUNT(*) COUNT FROM SLIME
+	</entry>
+	
+	<entry key="selectOne">
+		SELECT SLIME_NO, SLIME_NAME, SLIME_LEVEL, SLIME_EXP, HP, ATTACK, GOLD
+		FROM SLIME
+		WHERE SLIME_NO = ?
+	</entry>
+	
+	
+</properties>

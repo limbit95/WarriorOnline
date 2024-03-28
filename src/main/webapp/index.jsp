@@ -18,16 +18,16 @@
 
 			<%-- 로그인 창 --%>
 			<c:when test="${empty sessionScope.loginMember}">
-				<h1>Warrior Online 로그인</h1>
+				<h1>Warrior Online</h1>
 				
 				<form action="/login" method="post" class="login-form" autocomplete="off">
 					<div>
-						<p>아이디</p>
+						<p>ID</p>
 						<input type="text" name="inputId">
 					</div>
 					
 					<div>
-						<p>패스워드</p>
+						<p>Password</p>
 						<input type="password" name="inputPw">
 					</div>
 					
@@ -39,15 +39,17 @@
 			
 			<%-- 로그인 후 Warrior Online 메인페이지 --%>
 			<c:otherwise>
-			
-				<h1>Welcome To Warrior Online</h1>
-				
-				<div>
-					<a href="/gamestart" class="logout-btn">게임 시작</a>
-					<a href="/create" class="insert-btn">캐릭터 생성</a>
-					<a href="/delete" class="insert-btn">캐릭터 삭제</a>
-					<a href="/logout" class="logout-btn">로그아웃</a>
-				</div>
+				<table>
+					<h1>${sessionScope.loginMember.memberNickname}님</h1>
+					<h1>Warrior Online에</h1>
+					<h1>오신걸 환영합니다!!!</h1>
+					
+					<a href="/selectpage" class="logout-btn">게임 시작</a> 
+					
+					<a href="/gameinfo" class="insert-btn">게임 설명</a> 
+					
+					<a href="/logout" class="logout-btn">로그아웃</a> 
+				</table>
 				
 			</c:otherwise>
 			
