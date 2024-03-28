@@ -26,7 +26,11 @@ public class AttackController extends HttpServlet{
 		
 		slime.damaged(warrior);
 		
-		warrior.damaged(slime);
+		if(slime.isAlive()) {
+			warrior.damaged(slime);
+		}
+		
+		session.setAttribute("damagedslime", slime);
 		
 		if(!slime.isAlive()) {
 			session.setAttribute("deadslime", slime);

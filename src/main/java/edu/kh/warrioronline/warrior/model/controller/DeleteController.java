@@ -1,8 +1,10 @@
 package edu.kh.warrioronline.warrior.model.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import edu.kh.warrioronline.member.model.dto.Member;
+import edu.kh.warrioronline.warrior.model.dto.Warrior;
 import edu.kh.warrioronline.warrior.model.service.WarriorService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,8 +31,8 @@ public class DeleteController extends HttpServlet{
 			Member member = (Member)session.getAttribute("loginMember");
 			
 			if(result > 0) {
-//				List<Todo> todoList = service.selectAll(member.getMemberNo());
-//				session.setAttribute("todoList", todoList);
+				List<Warrior> warriorList = service.selectAll(member.getMemberNo());
+				session.setAttribute("warriorList", warriorList);
 			} else {
 				session.setAttribute("message2", "캐릭터 삭제 실패!");
 			}

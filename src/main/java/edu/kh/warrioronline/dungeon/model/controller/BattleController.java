@@ -28,7 +28,9 @@ public class BattleController extends HttpServlet{
 			
 			session.setAttribute("slime", slime);
 			
-			session.setAttribute("damagedslime", slime);
+			session.removeAttribute("damagedslime");
+			session.removeAttribute("deadslime");
+			
 		} catch (Exception e) {
 			System.out.println("[전투 시작 중 예외발생]");
 			e.printStackTrace();

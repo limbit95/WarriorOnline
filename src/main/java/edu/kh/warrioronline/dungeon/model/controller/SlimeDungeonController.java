@@ -28,7 +28,7 @@ public class SlimeDungeonController extends HttpServlet{
 			
 			Slime slime = slimeService.selectOne(slimeNo);
 			
-			req.setAttribute("slime", slime);
+			req.setAttribute("randomslime", slime);
 			
 		} catch (Exception e) {
 			System.out.println("[슬라임 랜덤 생성 중 예외발생]");

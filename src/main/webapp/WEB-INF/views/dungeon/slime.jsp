@@ -20,28 +20,37 @@
 				
 				<h1>몬스터가 나타났습니다!!!</h1>
 				
-				<h3><p>[${slime.slimeName} 슬라임]</p></h3>
-				<h3><p>레벨 : ${slime.level}</p></h3>
-				<h3><p>체력 : ${slime.hp}</p></h3>
+				<h3><p>[${randomslime.slimeName} 슬라임]</p></h3>
+				<h3><p>레벨 : ${randomslime.level}</p></h3>
+				<h3><p>체력 : ${randomslime.hp}</p></h3>
 				
 				<tr>
-					<td><a href="/battle?slimeno=${slime.slimeNo}" class="insert-btn">전투 시작</a></td>
+					<td><a href="/battle?slimeno=${randomslime.slimeNo}" class="insert-btn">전투 시작</a></td>
 					<td><a href="/dungeon" class="logout-btn">전투 종료</a></td>
 				</tr>
 				
 			</c:when>
 			
 			<c:otherwise>
-				<input id="slimeattack" value="${sessionScope.slime.attack}" type="hidden">
+				<input id="slimeattack" value="${slime.attack}" type="hidden">
 				
 				<c:choose>
-					<c:when test="${empty sessionScope.damagedslime}">
+					<c:when test="${empty damagedslime}">
 					
 						<h1>${slime.slimeName} 슬라임과 전투 시작!!!</h1>
+						
+						<tr>
+							<td><a href="/attack" class="insert-btn">공격</a></td>
+							<td><a href="/giveup" class="logout-btn" 
+							onclick="return giveup();">도망가기</a></td>
+							<input id="warriorhp" value="${sessionScope.selectwarrior.hp}" type="hidden">
+							<input id="warriormaxhp" value="${sessionScope.selectwarrior.maxHp}" type="hidden">
+						</tr>	
 						
 					</c:when>
 					
 					<c:otherwise>
+					
 						<h1>${slime.slimeName} 슬라임과 전투 중~!!!</h1>
 						
 						<h2>${selectwarrior.warriorName}님이 ${slime.slimeName} 슬라임을 공격하였습니다</h2>
@@ -53,6 +62,15 @@
 								
 								<h2>${slime.slimeName} 슬라임에게 피해를 입었습니다</h2>
 								<h3>${selectwarrior.warriorName} 쳬력 : [${selectwarrior.hp}/${selectwarrior.maxHp}]</h3>
+								
+								<tr>
+									<td><a href="/attack" class="insert-btn"
+									>공격</a></td>
+									<td><a href="/giveup" class="logout-btn" 
+									onclick="return giveup();">도망가기</a></td>
+									<input id="warriorhp" value="${sessionScope.selectwarrior.hp}" type="hidden">
+									<input id="warriormaxhp" value="${sessionScope.selectwarrior.maxHp}" type="hidden">
+								</tr>	
 							</c:when>
 							
 							<c:otherwise>
@@ -67,19 +85,10 @@
 								
 								<a href="/giveup" class="logout-btn">마을로 돌아가기</a>
 							</c:otherwise>
-						</c:choose>						
+						</c:choose>	
 						
 					</c:otherwise>
 				</c:choose>
-				
-				<tr>
-					<td><a href="/attack" class="insert-btn"
-					onclick="alert">공격</a></td>
-					<td><a href="/giveup" class="logout-btn" 
-					onclick="return giveup();">도망가기</a></td>
-					<input id="warriorhp" value="${sessionScope.selectwarrior.hp}" type="hidden">
-					<input id="warriormaxhp" value="${sessionScope.selectwarrior.maxHp}" type="hidden">
-				</tr>
 				
 			</c:otherwise>
 		
