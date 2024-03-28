@@ -14,7 +14,7 @@
 
 	<main>
 		
-		<h1>${sessionScope.selectwarrior.warriorName}님 환영합니다!!!</h1>
+		<h1>${selectwarrior.warriorName}님 환영합니다!!!</h1>
 		
 		<table>
 		

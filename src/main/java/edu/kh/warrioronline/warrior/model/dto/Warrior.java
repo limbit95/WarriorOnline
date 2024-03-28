@@ -26,6 +26,9 @@ public class Warrior {
 	private String isAlive; // 생존여부
 	private String createDate; // 캐릭터 생성 일자
 	
+	private String weaponName; // 무기 이름
+	private int weaponDamage; // 무기 공격력
+	
 	public void damaged(Slime slime) {
 		if(hp <= slime.getAttack()) {
 			hp = 0;

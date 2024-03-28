@@ -43,15 +43,15 @@
 							<td><a href="/attack" class="insert-btn">공격</a></td>
 							<td><a href="/giveup" class="logout-btn" 
 							onclick="return giveup();">도망가기</a></td>
-							<input id="warriorhp" value="${sessionScope.selectwarrior.hp}" type="hidden">
-							<input id="warriormaxhp" value="${sessionScope.selectwarrior.maxHp}" type="hidden">
+							<input id="warriorhp" value="${selectwarrior.hp}" type="hidden">
+							<input id="warriormaxhp" value="${selectwarrior.maxHp}" type="hidden">
 						</tr>	
 						
 					</c:when>
 					
 					<c:otherwise>
 					
-						<h1>${slime.slimeName} 슬라임과 전투 중~!!!</h1>
+						<h1>몬스터와 전투 중~!!!</h1>
 						
 						<h2>${selectwarrior.warriorName}님이 ${slime.slimeName} 슬라임을 공격하였습니다</h2>
 						<h3>${slime.slimeName} 슬라임 쳬력 : [${slime.hp}/${slime.maxHp}]</h3>
@@ -68,18 +68,22 @@
 									>공격</a></td>
 									<td><a href="/giveup" class="logout-btn" 
 									onclick="return giveup();">도망가기</a></td>
-									<input id="warriorhp" value="${sessionScope.selectwarrior.hp}" type="hidden">
-									<input id="warriormaxhp" value="${sessionScope.selectwarrior.maxHp}" type="hidden">
+									<input id="warriorhp" value="${selectwarrior.hp}" type="hidden">
+									<input id="warriormaxhp" value="${selectwarrior.maxHp}" type="hidden">
 								</tr>	
 							</c:when>
 							
 							<c:otherwise>
-								<br>
+								<br><br><br>
 								
-								<h1>${slime.slimeName} 슬라임과 전투에서 승리하였습니다!!!!!</h1>
+								<h2>${slime.slimeName} 슬라임이 사망하였습니다</h2>
+							
+								<br><br><br>
 								
-								<h3>경험치 ${slime.exp}이 증가하였습니다!!!</h3>
-								<h3>${slime.gold}골드를 획득하였습니다!!!</h3>
+								<h1>${slime.slimeName} 슬라임과의 전투에서 승리~!!!</h1>
+								
+								<h2>[${slime.exp}]경험치 증가!</h2>
+								<h2>[${slime.gold}]골드 획득!</h2>
 								
 								<br>
 								

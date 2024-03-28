@@ -21,8 +21,10 @@
 			<h2>[캐릭터 상태]</h2>
 			
 			<hr>
-			<h2>레벨 : ${sessionScope.selectwarrior.level}</h2>
-			<h2>체력 : [${sessionScope.selectwarrior.hp}/${sessionScope.selectwarrior.maxHp}]</h2>
+			<h2>레벨 : ${selectwarrior.level}</h2>
+			<h2>체력 : [${selectwarrior.hp}/${selectwarrior.maxHp}]</h2>
+			<h2>공격력 : ${selectwarrior.attack} [+${selectwarrior.weaponDamage}]</h2>
+			<h2>장착 무기 : ${selectwarrior.weaponName}</h2>
 			<hr>
 			
 			<br><br>
@@ -39,7 +41,7 @@
 			<a href="/orc" class="insert-btn" 
 				onclick="return orc();">오크 던전[Level 11 ~ 15]</a>
 			
-			<a href="/gamestart?warriorNo=${sessionScope.selectwarrior.warriorNo}" 
+			<a href="/gamestart?warriorNo=${selectwarrior.warriorNo}" 
 			class="logout-btn">던전 나가기</a>
 			
 			

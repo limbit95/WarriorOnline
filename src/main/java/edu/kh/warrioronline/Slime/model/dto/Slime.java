@@ -25,13 +25,13 @@ public class Slime {
 	private boolean isAlive; // 사망여부
 	
 	public void damaged(Warrior warrior) {
-		if(hp <= (warrior.getAttack())) {
+		if(hp <= (warrior.getAttack() + warrior.getWeaponDamage())) {
 			hp = 0;
 			isAlive = false;
 			return;
 		}
 		
-		hp -= (warrior.getAttack());
+		hp -= (warrior.getAttack() + warrior.getWeaponDamage());
 		return;
 	}
 	

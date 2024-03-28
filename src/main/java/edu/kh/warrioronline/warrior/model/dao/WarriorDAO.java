@@ -151,6 +151,8 @@ public class WarriorDAO {
 				warrior.setGold(rs.getInt("GOLD"));
 				warrior.setIsAlive(rs.getString("ISALIVE"));
 				warrior.setCreateDate(rs.getString("CREATE_DATE"));
+				warrior.setWeaponName(rs.getString("WEAPON_NAME"));
+				warrior.setWeaponDamage(rs.getInt("WEAPON_ATTACK"));
 			}
 		} finally {
 			close(rs);
