@@ -46,6 +46,57 @@
 		AND SELL_FL = 'N'
 	</entry>
 	
+	<entry key="nameCheck">
+		SELECT WARRIOR_NAME
+		FROM WARRIOR
+		WHERE WARRIOR_NAME = ?
+		AND WARRIOR_DEL_FL = 'N'
+	</entry>
+	
+	<entry key="createWeapon">
+		INSERT INTO WEAPON_LIST VALUES(SEQ_WEAPON_NO.NEXTVAL, '기본 검', 3, 1, 5, 'Y', 'N', 
+		(SELECT WARRIOR_NO FROM WARRIOR WHERE WARRIOR_NAME = ? AND MEMBER_NO = ?))
+	</entry>
+	
+	<entry key="createPotion">
+		INSERT INTO POTION_LIST VALUES(SEQ_POTION_NO.NEXTVAL, '하급 체력 물약', 20, 5, 3, 
+		(SELECT WARRIOR_NO FROM WARRIOR WHERE WARRIOR_NAME = ? AND MEMBER_NO = ?))
+	</entry>
+	
+	<entry key="selectAllByWeapon">
+		SELECT WEAPON_NO, WEAPON_NAME, WEAPON_ATTACK, AVALIABLE_LEVEL, PRICE
+		FROM WEAPON_LIST
+		WHERE WARRIOR_NO = ?
+	</entry>
+	
+	<entry key="offWeapon">
+		UPDATE WEAPON_LIST SET 
+		EQUIP_FL = 'N'
+		WHERE EQUIP_FL = 'Y'
+		AND WARRIOR_NO = ?
+	</entry>
+	
+	<entry key="onWeapon">
+		UPDATE WEAPON_LIST SET 
+		EQUIP_FL = 'Y'
+		WHERE EQUIP_FL = 'N'
+		AND WARRIOR_NO = ?
+		AND WEAPON_NO = ?
+	</entry>
+	
+	<entry key="save">
+		UPDATE WARRIOR SET
+		WARRIOR_LEVEL = ?,
+		WARRIOR_EXP = ?,
+		MAX_HP = ?,
+		HP = ?,
+		ATTACK = ?,
+		STAT_POINT = ?,
+		GOLD = ?,
+		ISALIVE = ?
+		WHERE WARRIOR_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
 	
 	
 </properties>

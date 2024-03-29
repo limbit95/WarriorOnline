@@ -32,7 +32,7 @@ public class Warrior {
 	public void damaged(Slime slime) {
 		if(hp <= slime.getAttack()) {
 			hp = 0;
-			exp -= 10;
+			exp -= 5;
 			if(exp < 0) {
 				exp = 0;
 			}
@@ -42,6 +42,30 @@ public class Warrior {
 		
 		hp -= slime.getAttack();
 		return;
+	}
+	
+	public void statusUp() {
+		if(exp >= 100) {
+			exp -= 100;
+			level += 1;
+			statPoint += 1;
+		} 
+	}
+	
+	// 영구 체력 증가 
+		public void maxHpUp() {
+			if(statPoint > 0) {
+				maxHp += 10;
+				statPoint--;
+			} 
+		}
+		
+	// 영구 공격력 증가
+	public void attackUp() {
+		if(statPoint > 0) {
+			attack += 3;
+			statPoint--;
+		} 
 	}
 	
 }

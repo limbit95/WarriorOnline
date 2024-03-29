@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +24,7 @@
 			<br>
 			
 			<button>생성하기</button>
+			<a href="/selectpage"><button type="button" style="background-color: rgb(184, 206, 225); width: 300px;">뒤로가기</button></a>
 		</form>
 		
 	</main>

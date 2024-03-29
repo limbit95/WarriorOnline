@@ -1,6 +1,8 @@
 // 유효성 검사 객체
 const checkObj = {"warriorName" : false};
 
+
+
 // 아이디 유효성 검사
 const warriorName = document.getElementById("warriorName");
 

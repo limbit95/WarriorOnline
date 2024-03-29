@@ -20,15 +20,27 @@ public class GameStartController extends HttpServlet{
 		
 		try {
 			HttpSession session = req.getSession();
-			
-			Member member = (Member)session.getAttribute("loginMember");
-			String warriorNo = req.getParameter("warriorNo");
-			
 			WarriorService warriorService = new WarriorService();
 			
-			Warrior warrior = warriorService.selectOne(warriorNo, member.getMemberNo());
+			Member member = (Member)session.getAttribute("loginMember");
 			
-			session.setAttribute("selectwarrior", warrior);
+			Warrior warrior = (Warrior)session.getAttribute("selectwarrior");
+			
+			String warriorNo = req.getParameter("warriorNo");
+			
+			if(warrior == null) {
+				Warrior loadwarrior = warriorService.selectOne(warriorNo, member.getMemberNo());
+				session.setAttribute("selectwarrior", loadwarrior);
+			} else {
+				session.setAttribute("selectwarrior", warrior);
+			}
+			
+			String save = req.getParameter("save");
+			
+			if(save != null) {
+				int result = warriorService.save(warrior, member.getMemberNo());
+			}
+			
 		} catch (Exception e) {
 			System.out.println("[캐릭터 접속 중 예외발생]");
 			e.printStackTrace();

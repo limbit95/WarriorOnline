@@ -24,17 +24,28 @@ public class AttackController extends HttpServlet{
 		
 		Slime slime = (Slime)session.getAttribute("slime");
 		
-		slime.damaged(warrior);
+		if(warrior.getIsAlive().equals("Y")) {
+			slime.damaged(warrior);			
+		}
 		
 		if(slime.isAlive()) {
 			warrior.damaged(slime);
+		}
+		
+		if(warrior.getIsAlive().equals("N")){
+			session.setAttribute("deadwarrior", "사망");
 		}
 		
 		session.setAttribute("damagedslime", slime);
 		
 		if(!slime.isAlive()) {
 			session.setAttribute("deadslime", slime);
+			warrior.setExp(warrior.getExp() + slime.getExp());
+			warrior.setGold(warrior.getGold() + slime.getGold());
+			warrior.statusUp();
 		}
+		
+		session.setAttribute("selectwarrior", warrior);
 		
 		req.getRequestDispatcher("/WEB-INF/views/dungeon/slime.jsp").forward(req, resp);
 		

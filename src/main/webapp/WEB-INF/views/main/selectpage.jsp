@@ -16,7 +16,7 @@
 	
 		<c:choose>
 		
-			<c:when test="${empty sessionScope.warriorList}">
+			<c:when test="${empty warriorList}">
 				
 				<h2>생성된 캐릭터가 없습니다</h2>
 				
@@ -49,6 +49,8 @@
 			</c:otherwise>
 		
 		</c:choose>
+		
+		${test}
 	
 	</main>
 	

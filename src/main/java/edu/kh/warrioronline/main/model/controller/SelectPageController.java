@@ -30,9 +30,10 @@ public class SelectPageController extends HttpServlet{
 			
 			List<Warrior> warriorList = warriorService.selectAll(member.getMemberNo());
 			
-			if(!warriorList.isEmpty()) {
-				session.setAttribute("warriorList", warriorList);
-			}
+			session.setAttribute("warriorList", warriorList);
+			
+			session.removeAttribute("deadwarrior");
+			session.removeAttribute("selectwarrior");
 		} catch (Exception e) {
 			System.out.println("[회원 번호 조회 중 예외발생");
 			e.printStackTrace();

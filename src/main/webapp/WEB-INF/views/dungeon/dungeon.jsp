@@ -18,13 +18,17 @@
 		
 			<h1 style="font-size: 60px;">Dungeon Stage</h1>
 		
-			<h2>[캐릭터 상태]</h2>
+			<h2>[캐릭터 상태<c:if test="${not empty deadwarrior}"> : 사망</c:if>]
+			</h2>
 			
 			<hr>
-			<h2>레벨 : ${selectwarrior.level}</h2>
+			<h2>레벨 : ${selectwarrior.level} / Exp[${selectwarrior.exp}/100]</h2>
 			<h2>체력 : [${selectwarrior.hp}/${selectwarrior.maxHp}]</h2>
 			<h2>공격력 : ${selectwarrior.attack} [+${selectwarrior.weaponDamage}]</h2>
 			<h2>장착 무기 : ${selectwarrior.weaponName}</h2>
+			
+			
+			
 			<hr>
 			
 			<br><br>
@@ -33,7 +37,6 @@
 			
 			<a href="/slime" class="insert-btn" 
 				onclick="return slime();">슬라임 던전[Level 1 ~ 5]</a>
-				<input type="hidden" id="warriorLevel" value="${selectwarrior.level}">
 			
 			<a href="/goblin" class="insert-btn" 
 				onclick="return goblin();">고블린 던전[Level 6 ~ 10]</a>
@@ -44,6 +47,9 @@
 			<a href="/gamestart?warriorNo=${selectwarrior.warriorNo}" 
 			class="logout-btn">던전 나가기</a>
 			
+			<%-- 선택한 캐릭터 레벨 값 --%>
+			<input type="hidden" id="warriorLevel" value="${selectwarrior.level}">
+			<input type="hidden" id="isAlive" value="${deadwarrior}">
 			
 		</table>
 		
