@@ -26,6 +26,7 @@ public class Warrior {
 	private String isAlive; // 생존여부
 	private String createDate; // 캐릭터 생성 일자
 	
+	private int weaponNo; // 무기 번호
 	private String weaponName; // 무기 이름
 	private int weaponDamage; // 무기 공격력
 	
@@ -67,5 +68,15 @@ public class Warrior {
 			statPoint--;
 		} 
 	}
+	
+	// 사용한 포션 치유량만큼 캐릭터 hp 회복
+	public void healHp(int heal) {
+		if((hp+heal) >= maxHp) {
+			hp = maxHp;
+			return;
+		}
+		hp += heal;
+	}
+	
 	
 }

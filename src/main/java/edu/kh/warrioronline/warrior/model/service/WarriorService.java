@@ -6,6 +6,7 @@ import java.util.List;
 import static edu.kh.warrioronline.common.JDBCTemplate.*;
 
 import edu.kh.warrioronline.warrior.model.dao.WarriorDAO;
+import edu.kh.warrioronline.warrior.model.dto.Potion;
 import edu.kh.warrioronline.warrior.model.dto.Warrior;
 import edu.kh.warrioronline.warrior.model.dto.Weapon;
 
@@ -218,6 +219,82 @@ public class WarriorService {
 		Connection conn = getConnection();
 		
 		int result = dao.save(conn, warrior, memberNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 선택한 캐릭터의 물약 인벤토리 전체 조회 서비스
+	 * @param warriorNo
+	 * @return
+	 */
+	public List<Potion> selectAllByPotion(int warriorNo) throws Exception{
+		Connection conn = getConnection();
+		
+		List<Potion> potionList = dao.selectAllByPotion(conn, warriorNo);
+		
+		close(conn);
+		
+		return potionList;
+	}
+
+	/** 선택한 캐릭터가 보유한 무기 중 선택한 무기 판매 서비스(DB COMMIT)
+	 * @param weaponNo
+	 * @param warriorNo
+	 * @return
+	 */
+	public int sellWeapon(int warriorNo) throws Exception{
+		Connection conn = getConnection();
+		
+		int sell = dao.sellWeapon(conn, warriorNo);
+		
+		if(sell > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return sell;
+	}
+
+	/** 선택한 캐릭터가 보유한 무기 중 선택한 무기 판매 (표시만)(판매 정보 DB저장X) 서비스
+	 * @param weaponNo
+	 * @param warriorNo 
+	 * @return
+	 */
+	public int sellFl(int weaponNo, int warriorNo) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.sellFl(conn, weaponNo, warriorNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	/** 선택한 캐릭터의 WEAPON_LIST의 SELL_FL 모두 'N'으로 변경 서비스
+	 * @param warriorNo
+	 * @return
+	 */
+	public int sellFlReset(int warriorNo) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.sellFlReset(conn, warriorNo);
 		
 		if(result > 0) {
 			commit(conn);

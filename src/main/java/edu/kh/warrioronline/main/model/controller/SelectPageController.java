@@ -34,6 +34,7 @@ public class SelectPageController extends HttpServlet{
 			
 			session.removeAttribute("deadwarrior");
 			session.removeAttribute("selectwarrior");
+			session.removeAttribute("weaponList");
 		} catch (Exception e) {
 			System.out.println("[회원 번호 조회 중 예외발생");
 			e.printStackTrace();

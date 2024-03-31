@@ -38,7 +38,7 @@ public class CreateController extends HttpServlet{
 			
 			
 			if(checkResult > 0) {
-				session.setAttribute("message2", "이미 존재하는 이름입니다. 다른 이름을 사용해주세요!");
+				session.setAttribute("message", "이미 존재하는 이름입니다. 다른 이름을 사용해주세요!");
 				resp.sendRedirect("/selectpage");
 			} else {
 				int result = warriorService.create(warriorName, member.getMemberNo());
@@ -46,10 +46,10 @@ public class CreateController extends HttpServlet{
 				int result3 = warriorService.potionCreate(warriorName, member.getMemberNo());
 				
 				if(result > 0) {
-					session.setAttribute("message2", "새로운 캐릭터를 생성하였습니다.");
+					session.setAttribute("message", "새로운 캐릭터를 생성하였습니다.");
 					resp.sendRedirect("/selectpage");
 				} else{
-					session.setAttribute("message2", "캐릭터 생성 실패!");
+					session.setAttribute("message", "캐릭터 생성 실패!");
 					resp.sendRedirect( req.getHeader("referer") );
 				}
 			}

@@ -22,11 +22,9 @@
 				<c:forEach var="weapon" items="${weaponList}" varStatus="i">
 				
 				<h2>
-				<a style="text-decoration-line: none; color: black;
-				hover {text-decoration: underline; color: rgb(157, 120, 120);}"
-				href="/weaponinventory?weaponNo=${weapon.weaponNo}" onclick="return confirm('선택한 무기를 장착하시겠습니까?');">
-				${i.index+1} . ${weapon.weaponName}[공격력+${weapon.weaponAttack}] 사용 가능 레벨[${weapon.avalLevel}] / ${weapon.price}골드
-				</a>
+				${i.index+1}. ${weapon.weaponName}[${weapon.avalLevel}레벨] 공격력+${weapon.weaponAttack} / ${weapon.price}골드  
+				<a href="/weaponinventory?equip=${weapon.weaponNo}" onclick="return confirm('선택한 무기를 장착하시겠습니까?');" class="insert-btn">장착</a>
+				<a href="/weaponinventory?sell=${weapon.weaponNo}" onclick="return confirm('선택한 무기를 판매하시겠습니까?');" class="logout-btn">판매</a>
 				</h2>
 				
 				<br>
@@ -45,6 +43,17 @@
 		</table>
 		
 	</main>
+	
+	<c:if test="${not empty sessionScope.weaponchangemessage}">
+		<script>
+			// EL/JSTL 구문이 자바스크립트보다 먼저 해석되는데
+			// 문자열이 들어가 있는 데이터의 경우
+			// 따옴표가 없는 상태이니 붙여줘야한다
+			alert('${weaponchangemessage}');
+		</script>
+		
+		<c:remove var="weaponchangemessage" scope="session"/>
+	</c:if>
 	
 </body>
 </html>

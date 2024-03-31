@@ -39,7 +39,7 @@
 			
 			<a href="/weaponinventory" class="insert-btn" >무기 인벤토리</a>
 			
-			<a href="/potioninventory" class="insert-btn" >물약 인벤토리 (구현못함)</a>
+			<a href="/potioninventory" class="insert-btn" >물약 인벤토리</a>
 			
 			<br>
 			

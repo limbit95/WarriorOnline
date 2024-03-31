@@ -59,10 +59,10 @@
 			// EL/JSTL 구문이 자바스크립트보다 먼저 해석되는데
 			// 문자열이 들어가 있는 데이터의 경우
 			// 따옴표가 없는 상태이니 붙여줘야한다
-			alert('${message2}');
+			alert('${message}');
 		</script>
 		
-		<c:remove var="message2" scope="session"/>
+		<c:remove var="message" scope="session"/>
 	</c:if>
 	
 </body>

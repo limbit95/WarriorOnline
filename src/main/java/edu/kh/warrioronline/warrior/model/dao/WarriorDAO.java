@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.warrioronline.warrior.model.dto.Potion;
 import edu.kh.warrioronline.warrior.model.dto.Warrior;
 import edu.kh.warrioronline.warrior.model.dto.Weapon;
 
@@ -153,6 +154,7 @@ public class WarriorDAO {
 				warrior.setGold(rs.getInt("GOLD"));
 				warrior.setIsAlive(rs.getString("ISALIVE"));
 				warrior.setCreateDate(rs.getString("CREATE_DATE"));
+				warrior.setWeaponNo(rs.getInt("WEAPON_NO"));
 				warrior.setWeaponName(rs.getString("WEAPON_NAME"));
 				warrior.setWeaponDamage(rs.getInt("WEAPON_ATTACK"));
 			}
@@ -391,6 +393,114 @@ int result = 0;
 			pstmt.setString(8, warrior.getIsAlive());
 			pstmt.setInt(9, warrior.getWarriorNo());
 			pstmt.setInt(10, memberNo);
+			
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 선택한 캐릭터의 물약 인벤토리 전체 조회 SQL 수행 DAO
+	 * @param conn
+	 * @param warriorNo
+	 * @return
+	 */
+	public List<Potion> selectAllByPotion(Connection conn, int warriorNo) throws Exception{
+		List<Potion> potionList = new ArrayList<Potion>();
+		
+		try {
+			String sql = prop.getProperty("selectAllByPotion");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, warriorNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Potion potion = new Potion();
+				
+				potion.setPotionNo(rs.getInt("POTION_NO"));
+				potion.setPotionName(rs.getString("POTION_NAME"));
+				potion.setHeal(rs.getInt("HEAL"));
+				potion.setQuantity(rs.getInt("QUANTITY"));
+				potion.setPrice(rs.getInt("PRICE"));
+				
+				potionList.add(potion);;
+				}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return potionList;
+	}
+
+	/** 선택한 캐릭터가 보유한 무기 중 선택한 무기 판매 서비스 
+	 * @param conn
+	 * @param weaponNo
+	 * @param warriorNo
+	 * @return
+	 */
+	public int sellWeapon(Connection conn, int warriorNo) throws Exception{
+		int sell = 0;
+		
+		try {
+			String sql = prop.getProperty("sellWeapon");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, warriorNo);
+			
+			sell = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		
+		return sell;
+	}
+
+	/** 선택한 캐릭터가 보유한 무기 중 선택한 무기 판매 (표시만)(판매 정보 DB저장X) SQL 수행 DAOt
+	 * @param conn
+	 * @param weaponNo
+	 * @param warriorNo 
+	 * @return
+	 */
+	public int sellFl(Connection conn, int weaponNo, int warriorNo) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("sellFl");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, weaponNo);
+			pstmt.setInt(2, warriorNo);
+			
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	/** 선택한 캐릭터의 WEAPON_LIST의 SELL_FL 모두 'N'으로 변경 SQL 수행 DAO
+	 * @param conn
+	 * @param warriorNo
+	 * @return
+	 */
+	public int sellFlReset(Connection conn, int warriorNo) throws Exception{
+		int result = 0;
+		
+		try {
+			String sql = prop.getProperty("sellFlReset");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, warriorNo);
 			
 			result = pstmt.executeUpdate();
 		} finally {

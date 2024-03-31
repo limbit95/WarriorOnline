@@ -15,9 +15,9 @@ public class ExitController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		HttpSession warriorSession = req.getSession();
+		HttpSession session = req.getSession();
 		
-		warriorSession.invalidate();
+		session.invalidate();
 		
 		resp.sendRedirect("/selectpage");
 		
